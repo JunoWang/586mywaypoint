@@ -50,3 +50,4 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         }
     });
 }
+initMap();

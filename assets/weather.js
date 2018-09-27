@@ -1,15 +1,14 @@
 // openweather API
-var map;
+let map;
 var geoJSON;
 var request;
 var gettingData = false;
 var openWeatherMapKey = "670d53e708d3af00d5b114c1ad4ec88b";
 function initialize() {
-    var mapOptions = {
-        zoom: 4,
-        center: new google.maps.LatLng(50,-50)
-    };
-    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 6,
+        center: {lat: 41.85, lng: -87.65}
+    });
     // Add interaction listeners to make weather requests
     google.maps.event.addListener(map, 'idle', checkIfDataRequested);
     // Sets up and populates the info window with details
