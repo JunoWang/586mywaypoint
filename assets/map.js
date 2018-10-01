@@ -1,3 +1,4 @@
+//  map API
 var map;
 map = new google.maps.Map(document.getElementById('map'), {
     zoom: 6,
@@ -7,11 +8,39 @@ function initMap() {
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
     directionsDisplay.setMap(map);
-    document.getElementById('submit').addEventListener('click', function() {
+    document.getElementById('submit').addEventListener('click', function () {
         calculateAndDisplayRoute(directionsService, directionsDisplay);
     });
 }
+function saveData() {
+    var start = escape(document.getElementById('start').value);
+    var end = escape(document.getElementById('end').value);
+    //var type = document.getElementById('type').value;
+    //var latlng = marker.getPosition();
+    var url = 'index.php?start=' + start + '&end=' + end ;
 
+    downloadUrl(url, function(data, responseCode) {
+        if (responseCode == 200 && data.length <= 1) {
+        }
+    });
+}
+
+function downloadUrl(url, callback) {
+    var request = window.ActiveXObject ?
+        new ActiveXObject('Microsoft.XMLHTTP') :
+        new XMLHttpRequest;
+
+    request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request.responseText, request.status);
+        }
+    };
+
+    request.open('GET', url, true);
+    request.send(null);
+}
+function doNothing() {}
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     var waypts = [];
     var checkboxArray = document.getElementById('waypoints');
@@ -51,6 +80,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     });
 }
 //initMap();
+///////////////////////////////////////////////////////////////////////////////////////
 // weather API
 var geoJSON;
 var request;
@@ -119,6 +149,7 @@ var proccessResults = function() {
         drawIcons(geoJSON);
     }
 };
+var infowindow = new google.maps.InfoWindow();
 // For each result that comes back, convert the data to geoJSON
 var jsonToGeoJson = function (weatherItem) {
     var feature = {
@@ -173,3 +204,4 @@ var resetData = function () {
 };
 google.maps.event.addDomListener(window, 'load', initialize);
 initMap();
+//initMapdata();
