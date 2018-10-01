@@ -18,9 +18,9 @@ if (!$db_selected) {
 }
 
 // Inserts new row with place data.
-$query = sprintf("INSERT INTO markers " .
-         " (id, name, address, lat, lng, type ) " .
-         " VALUES (NULL, '%s', '%s', '%s', '%s', '%s');",
+$query = sprintf("SELECT * FROM `markers`" .
+         " (start,end) " .
+         " VALUES ('%s', '%s');",
          mysql_real_escape_string($start),
          mysql_real_escape_string($end));
 

@@ -1,9 +1,4 @@
-<? php
-$servername = " localhost ";
-$username = " iuser ";
-$password = " 970213 ";
-$dbname = " proj1database ";
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <!-- Site made with Mobirise Website Builder v4.3.0, https://mobirise.com -->
@@ -23,7 +18,7 @@ $dbname = " proj1database ";
     <link rel="stylesheet" href="assets/mapstyle.css">
 </head>
 <body>
-
+    `
 <!-- -->
 
 <section class="header11 cid-qv5D4nkUot" id="header11-4x" data-rv-view="2369">
@@ -65,7 +60,7 @@ $dbname = " proj1database ";
                 <option value="Los Angeles, CA">Los Angeles, CA</option>
             </select>
             <br>
-            <input type="submit" id="submit" value='Submit' onclick='saveData()'>
+            <input type="submit" id="submit" value='Submit' >
         </div>
         <div id="directions-panel"></div>
     </div>
@@ -80,39 +75,6 @@ $dbname = " proj1database ";
 <script src="assets/touch-swipe/jquery.touch-swipe.min.js"></script>
 <script src="assets/theme/js/script.js"></script>
 <script src="assets/formoid/formoid.min.js"></script>
-<?php
-require("dbconnection.php");
-
-// Gets data from URL parameters.
-$start = $_GET['start'];
-$end = $_GET['end'];
-
-// Opens a connection to a MySQL server.
-$connection=mysql_connect ("localhost", $username, $password);
-if (!$connection) {
-  die('Not connected : ' . mysql_error());
-}
-
-// Sets the active MySQL database.
-$db_selected = mysql_select_db($database, $connection);
-if (!$db_selected) {
-  die ('Can\'t use db : ' . mysql_error());
-}
-
-// Inserts new row with place data.
-$query = sprintf("INSERT INTO markers " .
-         " (id, name, address, lat, lng, type ) " .
-         " VALUES (NULL, '%s', '%s', '%s', '%s', '%s');",
-         mysql_real_escape_string($start),
-         mysql_real_escape_string($end));
-
-$result = mysql_query($query);
-
-if (!$result) {
-  die('Invalid query: ' . mysql_error());
-}
-
-?>
 <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwYEj9ky8hoi3Dq3NrWs1UgRfw9opqQ8Y">
 </script>

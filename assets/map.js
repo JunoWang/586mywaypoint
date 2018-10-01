@@ -10,6 +10,7 @@ function initMap() {
     directionsDisplay.setMap(map);
     document.getElementById('submit').addEventListener('click', function () {
         calculateAndDisplayRoute(directionsService, directionsDisplay);
+        saveData();
     });
 }
 function saveData() {
