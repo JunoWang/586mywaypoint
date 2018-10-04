@@ -14,19 +14,18 @@ function initMap() {
     });
 }
 function saveData() {
-    var start = escape(document.getElementById('start').value);
-    var end = escape(document.getElementById('end').value);
+    var start = document.getElementById('start').value;
+    var end = document.getElementById('end').value;
     //var type = document.getElementById('type').value;
     //var latlng = marker.getPosition();
     var url = 'index.php?start=' + start + '&end=' + end ;
-
     downloadUrl(url, function(data, responseCode) {
         if (responseCode == 200 && data.length <= 1) {
         }
     });
 }
 
-function downloadUrl(url, callback) {
+function downloadUrl(url) {
     var request = window.ActiveXObject ?
         new ActiveXObject('Microsoft.XMLHTTP') :
         new XMLHttpRequest;
@@ -34,7 +33,9 @@ function downloadUrl(url, callback) {
     request.onreadystatechange = function() {
         if (request.readyState == 4) {
             request.onreadystatechange = doNothing;
-            callback(request.responseText, request.status);
+            request.responseText;
+            request.responseText;
+            request.status;
         }
     };
 
